@@ -28,16 +28,16 @@ def main():
     board = Board()
     player = VLCPlayer()
     player.load_media(TEST_SOUND_PATH)
-    '''
-    while True:
+    player.start_item(player.get_media(0))
+    '''while True:
         machine_on_off = voice_machine_on_off(board, machine_on_off)
         if machine_on_off & music_on == False:
             music_on = True
             play_mp3_play()
         elif machine_on_off & music_on:
             music_on = False
-            play_mp3_pause()'''
-
+            play_mp3_pause()
+    '''
 
 def ask(prompt):
     answer = input('%s (y/n) ' % prompt).lower()
