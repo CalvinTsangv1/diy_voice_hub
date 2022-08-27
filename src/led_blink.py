@@ -27,7 +27,7 @@ def main():
         print('machine on')
 
     while True:
-        if on_machine & board.button.wait_for_press:
+        if on_machine & board.button.wait_for_press():
             print('list music')
 
 
