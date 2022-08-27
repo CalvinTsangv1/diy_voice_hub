@@ -24,7 +24,7 @@ TEST_SOUND_PATH_1='/usr/share/sounds/alsa/Front_Center.wav'
 ERROR_NO_SPEAKER_SOUND = '''There may be a problem with your speaker. Check that it is connected properly.'''
 
 def main():
-    machine_on_off = False # default off
+    record_on_off = False # default off
     music_on = False # default off
     board = Board()
     player = VLCPlayer()
