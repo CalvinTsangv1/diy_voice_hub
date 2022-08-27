@@ -60,15 +60,13 @@ def main():
         Led.PULSE_SLOW'''
 
 def on_voice_machine(board):
-    board.button.wait_for_press()
-    reach_on_criteria = board.button.wait_for_release(5)
-    print('meet? ' + str(reach_on_criteria))
-    if reach_on_criteria == True:
-        board.led.state = Led.BLINK
-    else:
-        board.led.state = Led.ON
+    while True:
+        board.button.wait_for_press()
+        reach_on_criteria = board.button.wait_for_release(5)
+        print('meet? ' + str(reach_on_criteria))
+        if reach_on_criteria == True:
+            board.led.state = Led.BLINK
         sleep(1)
-        board.led.state = Led.OFF
 
 if __name__ == '__main__':
     main()
