@@ -38,6 +38,7 @@ class VLCPlayer:
         self.player = vlc.MediaListPlayer()
         self.media_list = self.instance.media_list_new()
         self.media_folder_path = media_folder_path
+        self.music_index = 0
 
         self.sound_mixer = alsaaudio.Mixer()
         self.sound_mixer.setvolume(70)
@@ -108,15 +109,16 @@ class VLCPlayer:
     def get_media(self, index):
         return self.player.__getitem__(index)
 
-    def play(self, index):
+    def play(self, index=0):
         if self.player == None:
             print("Please init media player")
-        self._process = Thread(target=self._play_item, args=(index,))
+        self.music_index = index
+        self._process = Thread(target=self._play_item)
         self._process.start()
         self._started.set()
 
-    def _play_item(self, index):
-        self.player.play_item_at_index(index)
+    def _play_item(self):
+        self.player.play_item_at_index(self.music_index)
         while self.is_playing():
             self._started.wait(1)
         #clear process thread
