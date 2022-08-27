@@ -33,11 +33,12 @@ class VLCPlayer:
     def __init__(self, media_folder_path = None):
         #setup media player
         self.instance = vlc.Instance()
+        self.media = vlc.MediaPlayer()
         self.player = vlc.MediaListPlayer()
         self.media_list = self.instance.media_list_new()
         self.media_folder_path = media_folder_path
 
-        self.player.audio_set_volume(100)
+        self.media.audio_set_volume(100)
 
         self._started = Event()
         self._process = None
@@ -130,4 +131,4 @@ class VLCPlayer:
         return self.player.is_playing()
 
     def set_volume(self, number):
-        self.player.audio_set_volume(number)
+        self.media.audio_set_volume(number)
