@@ -14,6 +14,20 @@
 # limitations under the License.
 
 """A demo of the Google CloudSpeech recognizer."""
+import sys
+import os
+ 
+# getting the name of the directory
+# where the this file is present.
+current = os.path.dirname(os.path.realpath(__file__))
+ 
+# Getting the parent directory name
+# where the current directory is present.
+parent = os.path.dirname(current)
+ 
+# adding the parent directory to
+# the sys.path.
+sys.path.append(parent)
 import argparse
 import locale
 import logging
