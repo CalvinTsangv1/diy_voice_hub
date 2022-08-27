@@ -42,10 +42,11 @@ def main():
     with tempfile.NamedTemporaryFile() as f:
         print('Recording for %d seconds...' % 3)
 
-        '''record_file(AudioFormat.CD, filename=f.name, filetype='wav',
+        record_file(AudioFormat.CD, filename=f.name, filetype='wav',
                     wait=lambda: sleep(3))
         print('Playing back recorded audio...')
-        play_wav(f.name)'''
+        print(str(f.name)
+        #play_wav(f.name)
 
 
     '''while True:
