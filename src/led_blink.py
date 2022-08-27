@@ -24,9 +24,11 @@ def main():
     board = Board()
     while True:
         if machine_on_off == True & board.button.wait_for_release(5):
+            print('off')
             machine_on_off = False
             board.led.state = Led.OFF
         elif machine_on_off == False & board.button.wait_for_release(5):
+            print('on')
             machine_on_off = True
             board.led.state = Led.BLINK
 
