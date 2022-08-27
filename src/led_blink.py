@@ -1,5 +1,6 @@
 import sys
 import os
+from time import sleep
  
 # getting the name of the directory
 # where the this file is present.
@@ -34,6 +35,11 @@ def locale_language():
 def main():
     with Board() as board:
         board.led.state = Led.ON
+        sleep(1)
+        board.led.state = Led.OFF
+        sleep(1)
+        board.led.state = Led.BLINK
+        sleep(20)
 
 if __name__ == '__main__':
     main()
