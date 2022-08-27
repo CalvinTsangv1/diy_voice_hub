@@ -47,7 +47,9 @@ class VLCPlayer:
     def load_media_list(self, media_path):
         print('running')
         self._started.wait()
+        print(str(os.listdir(media_path)))
         for file in os.listdir(media_path):
+            print(str(file))
             if file.split(".")[1] == 'mp3':
                 media = self.instance.media_new(file)
                 self.media_list.add_media(media)
