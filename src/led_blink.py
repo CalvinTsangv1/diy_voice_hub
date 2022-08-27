@@ -34,6 +34,8 @@ def main():
     recognize_text = ""
     sleep(2)
     player.play_item(0)
+    player.pause()
+    player.start()
     while True:
         record_on_off = voice_machine_on_off(board, record_on_off)
         if record_on_off:
