@@ -44,7 +44,7 @@ class VLCPlayer:
         print('quit VLC Player!')
         vlc.quit_app()
 
-    def load_media_list(self, media_path):
+    def loadMediaList(self, media_path):
         self._started.wait()
         for file in os.listdir(media_path):
             if file.split(".")[1] == 'mp3':
@@ -56,6 +56,6 @@ class VLCPlayer:
         print("loaded all media list")
 
     def load_media(self, media_path):
-        thread = Thread(target=load_media_list, args=(self, media_path))
+        thread = Thread(target=loadMediaList, args=(self, media_path))
         thread.start()
         self._started.set()
