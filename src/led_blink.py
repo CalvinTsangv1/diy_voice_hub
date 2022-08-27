@@ -24,7 +24,7 @@ def main():
     board = Board()
     machine_on_off = voice_machine_on_off(board, machine_on_off)
 
-        '''board.led.state = Led.ON
+    '''board.led.state = Led.ON
         sleep(1)
         board.led.state = Led.OFF
         sleep(1)
