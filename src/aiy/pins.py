@@ -93,7 +93,7 @@ from gpiozero.threads import GPIOThread
 
 def get_pin_offset():
     cmd = 'cat /sys/module/gpio_aiy_io/drivers/platform:gpio-aiy-io/gpio-aiy-io/gpio/gpiochip*/base'
-    return int(subprocess.run(cmd, shell=True, capture_output=True).stdout.strip())
+    return int(float(subprocess.run(cmd, shell=True, capture_output=True).stdout.strip()))
 
 PIN_OFFSET = get_pin_offset()
 
