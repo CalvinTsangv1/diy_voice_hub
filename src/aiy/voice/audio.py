@@ -224,6 +224,7 @@ def play_wav_async(filename_or_data):
     Returns:
         The :class:`~subprocess.Popen` object for the subprocess in which audio is playing.
     """
+    print('filename: ' + filename_or_data)
     if isinstance(filename_or_data, (bytes, bytearray)):
         cmd = aplay(fmt=None, filetype='wav', filename=None)
         process = subprocess.Popen(cmd, stdin=subprocess.PIPE)
