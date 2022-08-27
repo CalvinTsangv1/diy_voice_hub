@@ -52,6 +52,7 @@ def main():
                     if text in list:
                         print('play music')
                         player.play_item(0)
+                        player.start()
             record_on_off = False
 
 
