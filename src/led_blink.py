@@ -13,10 +13,11 @@ parent = os.path.dirname(current)
 # adding the parent directory to
 # the sys.path.
 sys.path.append(parent)
-
+import tempfile
 from aiy.board import Board, Led
 from aiy.voice.audio import AudioFormat, play_wav, record_file, play_mp3, play_mp3_pause, play_mp3_play, vlcPlayer
 from aiy.voice.audio_vlc import VLCPlayer
+from aiy.voice.audio import AudioFormat, play_wav, record_file
 
 TEST_SOUND_PATH='/home/pi/sound_list'
 TEST_SOUND_PATH_1='/usr/share/sounds/alsa/Front_Center.wav'
@@ -28,20 +29,21 @@ def main():
     board = Board()
     player = VLCPlayer()
     player.load_media(TEST_SOUND_PATH)
-    while True:
+
+    with tempfile.NamedTemporaryFile() as f:
+        print('Recording for %d seconds...' % 3)
+
+        record_file(AudioFormat.CD, filename=f.name, filetype='wav',
+                    wait=lambda: time.sleep(3))
+        print('Playing back recorded audio...')
+        play_wav(f.name)
+
+
+    '''while True:
         machine_on_off = voice_machine_on_off(board, machine_on_off)
         if machine_on_off:
             player.play_item(0)
-            machine_on_off = False
-    '''while True:
-        machine_on_off = voice_machine_on_off(board, machine_on_off)
-        if machine_on_off & music_on == False:
-            music_on = True
-            play_mp3_play()
-        elif machine_on_off & music_on:
-            music_on = False
-            play_mp3_pause()
-    '''
+            machine_on_off = False'''
 
 def ask(prompt):
     answer = input('%s (y/n) ' % prompt).lower()
