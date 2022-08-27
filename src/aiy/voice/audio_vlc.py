@@ -46,7 +46,6 @@ class VLCPlayer:
 
     def load_media_list(self, media_path):
         print('running')
-        self._started.wait()
         print(str(os.listdir(media_path)))
         for file in os.listdir(media_path):
             print(str(file))
@@ -59,7 +58,8 @@ class VLCPlayer:
         print("loaded all media list")
 
     def load_media(self, media_path):
-        print('thread start')
+        print('thread create')
         thread = Thread(target=self.load_media_list(media_path))
         thread.start()
+        print('thread started')
         self._started.set()
