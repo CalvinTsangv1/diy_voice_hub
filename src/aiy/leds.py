@@ -42,7 +42,7 @@ To control LEDs you've attached to the bonnet's GPIO pins or the LEDs named
 import math
 import os
 
-_DEVICE_PATH = '/sys/class/leds/led0/device/'
+_DEVICE_PATH = '/sys/class/leds/ktd202x:led1/device/'
 
 def _tflash_reg(duration_ms):
     if duration_ms <= 128:
