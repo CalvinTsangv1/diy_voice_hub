@@ -26,6 +26,7 @@ import vlc
 import os
 from threading import Thread
 from threading import Event
+import alsaaudio
 
 SUPPORTED_FILETYPES = ('wav', 'raw', 'voc', 'au')
 
@@ -38,7 +39,8 @@ class VLCPlayer:
         self.media_list = self.instance.media_list_new()
         self.media_folder_path = media_folder_path
 
-        self.media.audio_set_volume(100)
+        self.sound_mixer = alsaaudio.Mixer()
+        self.sound_mixer.setvolume(50)
 
         self._started = Event()
         self._process = None
