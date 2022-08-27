@@ -108,10 +108,22 @@ class VLCPlayer:
     def get_media(self, index):
         return self.player.__getitem__(index)
 
-    def play_item(self, index):
+    def play(self, index):
         if self.player == None:
             print("Please init media player")
+        self._process = Thread(target=self._play_item, args=(index))
+        self._process.start()
+        self._started.set()
+
+    def _play_item(self, index):
         self.player.play_item_at_index(index)
+        while self.is_playing():
+            self._started.wait(1)
+        #clear process thread
+        self._process = None
+        self._started.clear()
+        
+
 
     def pause(self):
         if self.player is not None:
