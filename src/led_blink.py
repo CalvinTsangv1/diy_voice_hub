@@ -28,7 +28,10 @@ def main():
     board = Board()
     player = VLCPlayer()
     player.load_media(TEST_SOUND_PATH)
-    player.play_item(0)
+    while True:
+        machine_on_off = voice_machine_on_off(board, machine_on_off)
+        if machine_on_off:
+            player.play_item(0)
     '''while True:
         machine_on_off = voice_machine_on_off(board, machine_on_off)
         if machine_on_off & music_on == False:
