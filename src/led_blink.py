@@ -32,7 +32,8 @@ def main():
     recognizer = sr.Recognizer()
     list=['Bray','play','pray','Grey']
     recognize_text = ""
-
+    sleep(2)
+    player.play_item(0)
     while True:
         record_on_off = voice_machine_on_off(board, record_on_off)
         if record_on_off:
