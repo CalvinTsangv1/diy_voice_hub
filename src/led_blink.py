@@ -30,7 +30,7 @@ def main():
         if machine_on_off & music_on == False:
             music_on = True
             print('play music')
-            play_wav(TEST_SOUND_PATH_1)
+            play_wav(TEST_SOUND_PATH)
             if not ask('Did you hear the test sound?'):
                 error(ERROR_NO_SPEAKER_SOUND)
                 return False
