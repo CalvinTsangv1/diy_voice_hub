@@ -23,8 +23,13 @@ def main():
     machine_on_off = False # default off
     board = Board()
     while True:
-        board.button._when_pressed(voice_machine_on_off(board, machine_on_off))
-        machine_on_off = board.button._pressed_callback
+        board.button.wait_for_release(5)
+        if machine_on_off == True:
+            machine_on_off = False
+            board.led.state = Led.OFF
+        else:
+            machine_on_off = True
+            board.led.state = Led.BLINK
 
     '''board.led.state = Led.ON
         sleep(1)
