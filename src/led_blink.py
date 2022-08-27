@@ -1,6 +1,7 @@
 import sys
 import os
 from time import sleep
+import vlc
  
 # getting the name of the directory
 # where the this file is present.
@@ -29,7 +30,9 @@ def main():
         if machine_on_off & music_on == False:
             music_on = True
             print('play music')
-            play_wav(TEST_SOUND_PATH)
+            p = vlc.MediaPlayer(TEST_SOUND_PATH)
+            p.play()
+            #play_wav(TEST_SOUND_PATH)
             if not ask('Did you hear the test sound?'):
                 error(ERROR_NO_SPEAKER_SOUND)
                 return False
