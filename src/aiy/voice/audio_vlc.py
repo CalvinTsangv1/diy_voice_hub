@@ -22,16 +22,20 @@ Audio format
 
 import vlc
 import os
-import threading
+from threading import Thread
+from threading import Event
 
 SUPPORTED_FILETYPES = ('wav', 'raw', 'voc', 'au')
 
 class VLCPlayer:
-    def __init__(self, media_folder_path = []):
+    def __init__(self, media_folder_path = None):
         self.instance = vlc.Instance()
+        self._started = Event()
+        self.player = vlc.MediaListPlayer()
         self.media_folder_path = media_folder_path
+        self.media_list = self.instance.media_list_new()
         self._process = None
-        self._started = threading.Event()
+
     
     def __enter__(self):
         return self
@@ -44,12 +48,14 @@ class VLCPlayer:
         self._started.wait()
         for file in os.listdir(media_path):
             if file.split(".")[1] == 'mp3':
-                self.media_list.insert(file)
+                media = self.instance.media_new(file)
+                self.media_list.add_media(media)
             else:
                 print('failed to load file: ' + file)
+        self.player.set_media_list(self.media_list)
         print("loaded all media list")
 
     def load_media(self, media_path):
-        thread = threading.Thread(target=load_media_list, args=(self, media_path))
+        thread = Thread(target=load_media_list, args=(self, media_path))
         thread.start()
         self._started.set()
