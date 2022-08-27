@@ -15,7 +15,6 @@ parent = os.path.dirname(current)
 sys.path.append(parent)
 import tempfile
 from aiy.board import Board, Led
-from aiy.voice.audio import AudioFormat, play_wav, record_file, play_mp3, play_mp3_pause, play_mp3_play, vlcPlayer
 from aiy.voice.audio_vlc import VLCPlayer
 from aiy.voice.audio import AudioFormat, play_wav, record_file
 
