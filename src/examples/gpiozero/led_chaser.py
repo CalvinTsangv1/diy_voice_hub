@@ -16,6 +16,7 @@ parent = os.path.dirname(current)
  
 # adding the parent directory to
 # the sys.path.
+print(parent)
 sys.path.append(parent)
 from time import sleep
 from gpiozero import LED
