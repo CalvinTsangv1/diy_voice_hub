@@ -26,7 +26,8 @@ def main():
     music_on = False # default off
     board = Board()
 
-    if play_mp3(TEST_SOUND_PATH) == None:
+    setup = play_mp3(TEST_SOUND_PATH)
+    if setup == None:
         error(ERROR_NO_SPEAKER_SOUND)
     else:
         play_mp3_pause()
