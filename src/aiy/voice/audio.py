@@ -137,7 +137,7 @@ def arecord(fmt, filetype='raw', filename=None, device='default'):
 
     return cmd
 
-def vlcPlayer(fmt, filetype='mp3', filename=None, device='default'):
+def vlcPlayer(fmt, filetype='mp3', filename=None):
     if filetype == 'raw' and fmt is None:
         raise ValueError('Format must be specified for raw data.')
     if filename is None:
