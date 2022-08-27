@@ -355,10 +355,10 @@ class Board:
         the button connector."""
         with self._lock:
             if not self._button:
-                print('button pin: '+ self._button_pin)
-                print('button: ' + Button(self._button_pin))
+                print('button pin: '+ str(self._button_pin))
+                print('button: ' + str(Button(self._button_pin)))
                 self._button = self._stack.enter_context(Button(self._button_pin))
-                print('button result: '+ self._button)
+                print('button result: '+ str(self._button))
             return self._button
 
     @property
@@ -366,8 +366,8 @@ class Board:
         """Returns an :class:`Led` representing the LED in the button."""
         with self._lock:
             if not self._led:
-                print('led pin: '+ self._button_pin)
-                print('led: ' + Button(self._button_pin))
+                print('led pin: '+ str(self._button_pin))
+                print('led: ' + str(Button(self._button_pin)))
                 self._led = self._stack.enter_context(Led(self._led_pin))
-                print('led result: '+ self._button)
+                print('led result: '+ str(self._button))
             return self._led
