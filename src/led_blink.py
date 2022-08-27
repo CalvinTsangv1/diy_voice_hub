@@ -30,7 +30,7 @@ def main():
     player = VLCPlayer()
     player.load_media(TEST_SOUND_PATH)
     recognizer = sr.Recognizer()
-    list=['Bray','play','pray']
+    list=['Bray','play','pray','Grey']
 
     while True:
         record_on_off = voice_machine_on_off(board, record_on_off)
