@@ -120,10 +120,8 @@ class VLCPlayer:
     def _play_item(self):
         asyncio.set_event_loop(self._event_loop)
         asyncio.get_event_loop().call_soon(lambda: self.player.play_item_at_index(self.music_index))
-        sleep(1000)
         self._event_loop.run_forever()
-        
-
+        sleep(1000)
 
     def pause(self):
         if self.player is not None:
