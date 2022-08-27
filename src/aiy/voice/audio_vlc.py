@@ -119,7 +119,7 @@ class VLCPlayer:
 
     def _play_item(self):
         asyncio.set_event_loop(self._event_loop)
-        self.player.play_item_at_index(self.music_index)
+        asyncio.get_event_loop().call_soon(lambda: self.player.play_item_at_index(self.music_index))
         self._event_loop.run_forever()
         
 
