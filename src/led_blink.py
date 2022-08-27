@@ -17,7 +17,6 @@ import locale
 import logging
 
 from aiy.board import Board, Led
-from aiy.cloudspeech import CloudSpeechClient
 
 
 def get_hints(language_code):
