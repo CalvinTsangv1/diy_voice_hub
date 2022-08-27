@@ -299,10 +299,12 @@ class Leds:
     @staticmethod
     def installed():
         """Internal method to verify the ``Leds`` class is available."""
+        print('device path: '+_DEVICE_PATH)
         return os.path.exists(_DEVICE_PATH)
 
     def __init__(self, reset=True):
         if not Leds.installed():
+            print('led no installed')
             raise RuntimeError('Leds are not available on this board.')
 
         self._pattern = None
