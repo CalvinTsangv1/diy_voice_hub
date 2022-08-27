@@ -14,6 +14,7 @@ parent = os.path.dirname(current)
 # the sys.path.
 sys.path.append(parent)
 import tempfile
+import speech_recognition as sr
 from aiy.board import Board, Led
 from aiy.voice.audio_vlc import VLCPlayer
 from aiy.voice.audio import AudioFormat, play_wav, record_file
@@ -28,14 +29,23 @@ def main():
     board = Board()
     player = VLCPlayer()
     player.load_media(TEST_SOUND_PATH)
+    recognizer = sr.Recognizer()
+
+    with sr.AudioFile("/home/pi/diy_voice_hub/test.wav") as source:
+        # listen for the data (load audio to memory)
+        audio_data = recognizer.record(source)
+        # recognize (convert from speech to text)
+        text = recognizer.recognize_google(audio_data)
+        print(text)
+
 
     with tempfile.NamedTemporaryFile() as f:
         print('Recording for %d seconds...' % 3)
 
-        record_file(AudioFormat.CD, filename=f.name, filetype='wav',
+        '''record_file(AudioFormat.CD, filename=f.name, filetype='wav',
                     wait=lambda: sleep(3))
         print('Playing back recorded audio...')
-        play_wav(f.name)
+        play_wav(f.name)'''
 
 
     '''while True:
