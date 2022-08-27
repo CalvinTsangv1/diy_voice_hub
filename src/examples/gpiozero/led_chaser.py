@@ -4,20 +4,7 @@
 Implements simple LED chaser.
 """
 import sys
-import os
- 
-# getting the name of the directory
-# where the this file is present.
-current = os.path.dirname(os.path.realpath(__file__))
- 
-# Getting the parent directory name
-# where the current directory is present.
-parent = os.path.dirname(current)
- 
-# adding the parent directory to
-# the sys.path.
-print(parent)
-sys.path.append(parent)
+sys.path.append("/home/pi/diy_voice_hub/src")
 from time import sleep
 from gpiozero import LED
 from aiy.pins import (PIN_A, PIN_B, PIN_C, PIN_D)
