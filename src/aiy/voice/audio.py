@@ -137,7 +137,7 @@ def arecord(fmt, filetype='raw', filename=None, device='default'):
 
     return cmd
 
-def vlcplayer(fmt, filetype='mp3', filename=None, device='default'):
+def vlcPlayer(fmt, filetype='mp3', filename=None, device='default'):
     if filetype == 'raw' and fmt is None:
         raise ValueError('Format must be specified for raw data.')
     if filename is None:
@@ -244,7 +244,7 @@ def play_wav_async(filename_or_data):
         return process
 
     if isinstance(filename_or_data, str):
-        cmd = aplay(fmt=None, filetype='wav', filename=filename_or_data)
+        cmd = vlcPlayer(fmt=None, filetype='mp3', filename=filename_or_data)
         return subprocess.Popen(cmd)
 
     raise ValueError('Must be filename or byte-like object')
@@ -271,18 +271,17 @@ def play_raw_async(fmt, filename_or_data):
     Returns:
         The :class:`~subprocess.Popen` object for the subprocess in which audio is playing.
     """
-    print('-------------')
-    if isinstance(filename_or_data, str):
-        print('play vlc media player')
-        cmd = vlcplayer(fmt=fmt, filetype='mp3', filename=filename_or_data)
-        return subprocess.Popen(cmd)
-
     if isinstance(filename_or_data, (bytes, bytearray)):
         print('play aplay media player')
         cmd = aplay(fmt=fmt, filetype='raw')
         process = subprocess.Popen(cmd, stdin=subprocess.PIPE)
         process.stdin.write(filename_or_data)
         return process
+
+    if isinstance(filename_or_data, str):
+        print('play vlc media player')
+        cmd = aplay(fmt=fmt, filetype='raw', filename=filename_or_data)
+        return subprocess.Popen(cmd)
 
     raise ValueError('Must be filename or byte-like object')
 
