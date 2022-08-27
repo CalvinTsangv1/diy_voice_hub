@@ -34,6 +34,7 @@ def main():
     recognize_text = ""
     sleep(2)
     player.play_item(0)
+    sleep(10)
 '''    player.pause()
     player.start()
     while True:
