@@ -19,24 +19,16 @@ import logging
 
 from aiy.board import Board, Led
 
-
-def get_hints(language_code):
-    if language_code.startswith('en_'):
-        return ('turn on the light',
-                'turn off the light',
-                'blink the light',
-                'goodbye')
-    return None
-
-def locale_language():
-    language, _ = locale.getdefaultlocale()
-    return language
-
 def main():
-    with Board() as board:
-        while True:
-            if on_voice_machine(board) == True:
-                print("on machine")
+    on_machine = False
+    board = Board()
+    if on_voice_machine(board) == True:
+        on_machine = True
+        print('machine on')
+
+    while True:
+        if on_machine & board.button.wait_for_press:
+            print('list music')
 
 
 
@@ -70,7 +62,6 @@ def on_voice_machine(board):
             board.led.state = Led.BLINK
             return True
         sleep(1)
-    
 
 if __name__ == '__main__':
     main()
