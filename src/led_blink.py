@@ -48,6 +48,7 @@ def main():
                     # recognize (convert from speech to text)
                     text = recognizer.recognize_google(audio_data)
                     print("'"+text+"'")
+                    sleep(2)
                     if text in list:
                         print('play music')
                         player.play_item(0)

@@ -40,7 +40,7 @@ class VLCPlayer:
         self.media_folder_path = media_folder_path
 
         self.sound_mixer = alsaaudio.Mixer()
-        self.sound_mixer.setvolume(50)
+        self.sound_mixer.setvolume(70)
 
         self._started = Event()
         self._process = None
