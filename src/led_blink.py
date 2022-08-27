@@ -32,6 +32,7 @@ def main():
         machine_on_off = voice_machine_on_off(board, machine_on_off)
         if machine_on_off:
             player.play_item(0)
+            machine_on_off = False
     '''while True:
         machine_on_off = voice_machine_on_off(board, machine_on_off)
         if machine_on_off & music_on == False:
