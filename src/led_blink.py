@@ -34,7 +34,7 @@ def main():
     recognize_text = ""
     sleep(2)
     player.play_item(0)
-    player.pause()
+'''    player.pause()
     player.start()
     while True:
         record_on_off = voice_machine_on_off(board, record_on_off)
@@ -56,16 +56,7 @@ def main():
                 print('play music')
                 player.play_item(0)
                 recognize_text = ""
-            record_on_off = False
-
-
-
-    '''while True:
-        machine_on_off = voice_machine_on_off(board, machine_on_off)
-        if machine_on_off:
-            player.play_item(0)
-            machine_on_off = False'''
-
+            record_on_off = False'''
 def ask(prompt):
     answer = input('%s (y/n) ' % prompt).lower()
     while answer not in ('y', 'n'):
