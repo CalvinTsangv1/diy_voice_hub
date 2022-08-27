@@ -259,9 +259,12 @@ def play_wav_async(filename_or_data):
     raise ValueError('Must be filename or byte-like object')
 
 def play_mp3(filename_or_data):
+    play_mp3_async(filename_or_data).wait()
+
+def play_mp3_async(fmt, filename_or_data):
     if isinstance(filename_or_data, str):
         cmd = vlcPlayer(fmt=fmt, filetype='raw', filename=filename_or_data)
-        return subprocess.Popen(cmd)
+        return subprocess.Popen(cmd)    
 
 def play_mp3_pause():
     cmd = vlcPlayerPause()
