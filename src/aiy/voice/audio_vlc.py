@@ -60,7 +60,7 @@ class VLCPlayer:
 
     def load_media(self, media_path):
         print('thread create')
-        thread = Thread(target=self.load_media_list(media_path))
+        thread = Thread(target=self.load_media_list, args=(media_path))
         thread.start()
         print('thread started')
         self._started.set()
