@@ -31,6 +31,7 @@ def main():
     player.load_media(TEST_SOUND_PATH)
     recognizer = sr.Recognizer()
     list=['Bray','play','pray','Grey']
+    recognize_text = ""
 
     while True:
         record_on_off = voice_machine_on_off(board, record_on_off)
@@ -40,19 +41,18 @@ def main():
                     wait=lambda: sleep(3))
                 print('Playing back recorded audio...')
                 print(str(f.name))
-                #play_wav(f.name)
 
                 with sr.AudioFile(f.name) as source:
                     # listen for the data (load audio to memory)
                     audio_data = recognizer.record(source)
                     # recognize (convert from speech to text)
-                    text = recognizer.recognize_google(audio_data)
-                    print("'"+text+"'")
+                    recognize_text = recognizer.recognize_google(audio_data)
+                    print("'"+recognize_text+"'")
                     sleep(2)
-                    if text in list:
-                        print('play music')
-                        player.play_item(0)
-                        player.start()
+            if recognize_text in list:
+                print('play music')
+                player.play_item(0)
+                recognize_text = ""
             record_on_off = False
 
 
