@@ -13,24 +13,23 @@ parent = os.path.dirname(current)
 # adding the parent directory to
 # the sys.path.
 sys.path.append(parent)
-import argparse
-import locale
-import logging
 
 from aiy.board import Board, Led
+from aiy.voice.audio import AudioFormat, play_wav, record_file
+
+TEST_SOUND_PATH='/home/pi/sound_list/armin-blah-blah.wav'
 
 def main():
     machine_on_off = False # default off
+    music_on = False # default off
     board = Board()
     while True:
-        if machine_on_off == True & board.button.wait_for_press():
-            print('off')
-            machine_on_off = False
-            board.led.state = Led.OFF
-        if machine_on_off == False & board.button.wait_for_press():
-            print('on')
-            machine_on_off = True
-            board.led.state = Led.BLINK
+        machine_on_off = voice_machine_on_off(board, machine_on_off)
+        if machine_on_off & music_on == False:
+            music_on = True
+            play_wav(TEST_SOUND_PATH)
+            
+
 
     '''board.led.state = Led.ON
         sleep(1)
@@ -53,10 +52,12 @@ def main():
         print("PULSE_SLOW")
         Led.PULSE_SLOW'''
 def voice_machine_on_off(board, machine_on_off):
-    if machine_on_off == False:
-        board.led.state = Led.BLINK
-    else:
+    if machine_on_off == True & board.button.wait_for_press():
         board.led.state = Led.OFF
+        return False
+    if machine_on_off == False & board.button.wait_for_press():
+        board.led.state = Led.BLINK
+        return True
 
 if __name__ == '__main__':
     main()
