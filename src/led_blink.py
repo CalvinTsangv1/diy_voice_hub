@@ -60,7 +60,7 @@ def main():
         Led.PULSE_SLOW'''
 
 def on_voice_machine(board):
-    reach_on_criteria = board.wait_for_release(5)
+    reach_on_criteria = board.button.wait_for_release(5)
     if reach_on_criteria == True:
         board.led.state = Led.BLINK
     else:
