@@ -22,7 +22,7 @@ from aiy.board import Board, Led
 def main():
     machine_on_off = False # default off
     board = Board()
-    machine_on_off = voice_machine_on_off(board, machine_on_off)
+    board.button._when_pressed(voice_machine_on_off(board, machine_on_off))
 
     '''board.led.state = Led.ON
         sleep(1)
@@ -46,11 +46,9 @@ def main():
         Led.PULSE_SLOW'''
 def voice_machine_on_off(board, machine_on_off):
     if machine_on_off == False:
-        board.button.when_pressed = Led.BLINK
-        return True
+        board.led.state = Led.BLINK
     else:
-        board.button.when_pressed = Led.OFF
-        return False
+        board.led.state = Led.OFF
 
 if __name__ == '__main__':
     main()
