@@ -30,15 +30,12 @@ def main():
     player = VLCPlayer()
     player.load_media(TEST_SOUND_PATH)
     recognizer = sr.Recognizer()
-    list=['Bray','play','pray','Grey']
-    recognize_text = ""
-    sleep(5)
-    player.play()
-'''    player.pause()
-    player.start()
+    play=['Bray','play','pray','Grey']
+    stop=['stop']
+
+    sleep(1)
     while True:
-        record_on_off = voice_machine_on_off(board, record_on_off)
-        if record_on_off:
+        if board.button.wait_for_press():
             with tempfile.NamedTemporaryFile() as f:
                 record_file(AudioFormat.CD, filename=f.name, filetype='wav',
                     wait=lambda: sleep(3))
@@ -49,14 +46,18 @@ def main():
                     # listen for the data (load audio to memory)
                     audio_data = recognizer.record(source)
                     # recognize (convert from speech to text)
-                    recognize_text = recognizer.recognize_google(audio_data)
-                    print("'"+recognize_text+"'")
-                    sleep(2)
-            if recognize_text in list:
-                print('play music')
-                player.play_item(0)
-                recognize_text = ""
-            record_on_off = False'''
+                    text = recognizer.recognize_google(audio_data)
+                    print("'"+text+"'")
+                    if text in play:
+                        print('play music')
+                        player.play()
+                    if text in stop:
+                        print('stop music')
+                        player.pause()
+
+
+        
+            record_on_off = False
 def ask(prompt):
     answer = input('%s (y/n) ' % prompt).lower()
     while answer not in ('y', 'n'):
