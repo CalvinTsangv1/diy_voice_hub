@@ -69,6 +69,7 @@ import subprocess
 import threading
 import itertools
 import wave
+import vlc
 
 from collections import namedtuple
 
@@ -134,6 +135,16 @@ def arecord(fmt, filetype='raw', filename=None, device='default'):
     if filename is not None:
         cmd.append(filename)
 
+    return cmd
+
+def vlc(fmt, filetype='mp3', filename=None, device='default'):
+    if filetype == 'raw' and fmt is None:
+        raise ValueError('Format must be specified for raw data.')
+    if filename is None:
+        raise ValueError('Missing file.')
+    cmd = ['vlc', filename,
+            '--aout=alsa',
+            '--alsa-audio-device="default"']
     return cmd
 
 
@@ -261,13 +272,15 @@ def play_raw_async(fmt, filename_or_data):
         The :class:`~subprocess.Popen` object for the subprocess in which audio is playing.
     """
     if isinstance(filename_or_data, (bytes, bytearray)):
+        print('play aplay media player')
         cmd = aplay(fmt=fmt, filetype='raw')
         process = subprocess.Popen(cmd, stdin=subprocess.PIPE)
         process.stdin.write(filename_or_data)
         return process
 
     if isinstance(filename_or_data, str):
-        cmd = aplay(fmt=fmt, filetype='raw', filename=filename_or_data)
+        print('play vlc media player')
+        cmd = vlc(fmt=fmt, filetype='mp3', filename=filename_or_data)
         return subprocess.Popen(cmd)
 
     raise ValueError('Must be filename or byte-like object')
