@@ -120,7 +120,9 @@ class VLCPlayer:
     def _play_item(self):
         self.player.play_item_at_index(self.music_index)
         while self.is_playing():
+            print('playing...')
             self._started.wait(1)
+        print('stop...')
         #clear process thread
         self._process = None
         self._started.clear()
