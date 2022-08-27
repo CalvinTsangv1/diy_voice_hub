@@ -34,7 +34,9 @@ def locale_language():
 
 def main():
     with Board() as board:
-        on_voice_machine(board)
+        while True:
+            if on_voice_machine(board) == True:
+                print("on machine")
 
 
 
@@ -66,7 +68,9 @@ def on_voice_machine(board):
         print('meet? ' + str(reach_on_criteria))
         if reach_on_criteria == True:
             board.led.state = Led.BLINK
+            break
         sleep(1)
+    
 
 if __name__ == '__main__':
     main()
