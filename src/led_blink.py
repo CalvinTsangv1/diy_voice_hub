@@ -22,7 +22,7 @@ from aiy.board import Board, Led
 def main():
     machine_on_off = False # default off
     board = Board()
-    board.button._when_pressed(voice_machine_on_off(board, machine_on_off))
+    board.button._when_pressed(machine_on_off = voice_machine_on_off(board, machine_on_off))
 
     '''board.led.state = Led.ON
         sleep(1)
