@@ -26,7 +26,7 @@ import threading
 
 SUPPORTED_FILETYPES = ('wav', 'raw', 'voc', 'au')
 
-class VlcPlayer:
+class VLCPlayer:
     def __init__(self, media_folder_path = []):
         if self.instance == None:
             self.instance = vlc.Instance()

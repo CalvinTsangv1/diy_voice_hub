@@ -16,7 +16,7 @@ sys.path.append(parent)
 
 from aiy.board import Board, Led
 from aiy.voice.audio import AudioFormat, play_wav, record_file, play_mp3, play_mp3_pause, play_mp3_play, vlcPlayer
-from aiy.voice.audio_vlc import VlcPlayer
+from aiy.voice.audio_vlc import VLCPlayer
 
 TEST_SOUND_PATH='/home/pi/sound_list'
 TEST_SOUND_PATH_1='/usr/share/sounds/alsa/Front_Center.wav'
@@ -26,8 +26,8 @@ def main():
     machine_on_off = False # default off
     music_on = False # default off
     board = Board()
-    vlcPlayer = VlcPlayer()
-    vlcPlayer.load_media(TEST_SOUND_PATH)
+    player = VLCPlayer()
+    player.load_media(TEST_SOUND_PATH)
     '''
     while True:
         machine_on_off = voice_machine_on_off(board, machine_on_off)
