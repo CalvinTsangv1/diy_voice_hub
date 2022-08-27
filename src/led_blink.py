@@ -45,7 +45,7 @@ def main():
         record_file(AudioFormat.CD, filename=f.name, filetype='wav',
                     wait=lambda: sleep(3))
         print('Playing back recorded audio...')
-        print(str(f.name)
+        print(str(f.name))
         #play_wav(f.name)
 
 
