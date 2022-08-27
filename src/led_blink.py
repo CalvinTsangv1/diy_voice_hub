@@ -47,7 +47,8 @@ def main():
                     # recognize (convert from speech to text)
                     text = recognizer.recognize_google(audio_data)
                     print("'"+text+"'")
-                    if text == "play":
+                    if text == 'play':
+                        print('play music')
                         player.play_item(0)
             record_on_off = False
 
