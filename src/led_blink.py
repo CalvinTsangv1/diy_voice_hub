@@ -34,7 +34,11 @@ def locale_language():
 
 def main():
     with Board() as board:
-        board.led.state = Led.ON
+        on_voice_machine(board)
+
+
+
+        '''board.led.state = Led.ON
         sleep(1)
         board.led.state = Led.OFF
         sleep(1)
@@ -53,7 +57,16 @@ def main():
         Led.PULSE_QUICK
         sleep(10)
         print("PULSE_SLOW")
-        Led.PULSE_SLOW
+        Led.PULSE_SLOW'''
+
+def on_voice_machine(board):
+    reach_on_criteria = board.wait_for_release(5)
+    if reach_on_criteria == True:
+        board.led.state = Led.BLINK
+    else:
+        board.led.state = Led.ON
+        sleep(1)
+        board.led.state = Led.OFF
 
 if __name__ == '__main__':
     main()
