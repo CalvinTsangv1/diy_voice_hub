@@ -48,6 +48,12 @@ def main():
         sleep(10)
         print("BEACON_DARK")
         board.led.state = Led.BEACON_DARK
+        sleep(10)
+        print("PULSE_QUICK")
+        Led.PULSE_QUICK
+        sleep(10)
+        print("PULSE_SLOW")
+        Led.PULSE_SLOW
 
 if __name__ == '__main__':
     main()
