@@ -30,6 +30,7 @@ def main():
     player = VLCPlayer()
     player.load_media(TEST_SOUND_PATH)
     recognizer = sr.Recognizer()
+    list=['Bray','play','pray']
 
     while True:
         record_on_off = voice_machine_on_off(board, record_on_off)
@@ -47,7 +48,7 @@ def main():
                     # recognize (convert from speech to text)
                     text = recognizer.recognize_google(audio_data)
                     print("'"+text+"'")
-                    if text == 'play':
+                    if text in list:
                         print('play music')
                         player.play_item(0)
             record_on_off = False
