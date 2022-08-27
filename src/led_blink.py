@@ -27,7 +27,7 @@ def main():
             print('off')
             machine_on_off = False
             board.led.state = Led.OFF
-        elif machine_on_off == False & board.button.wait_for_press():
+        if machine_on_off == False & board.button.wait_for_press():
             print('on')
             machine_on_off = True
             board.led.state = Led.BLINK
