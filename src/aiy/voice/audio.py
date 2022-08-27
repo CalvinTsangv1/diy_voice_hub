@@ -160,7 +160,9 @@ def aplay(fmt, filetype='raw', filename=None, device='default'):
 
     if filename is not None:
         cmd.append(filename)
-
+    print('fmt: ' + str(fmt))
+    print('device: ' + device)
+    print('cmd: '+ str(cmd))
     return cmd
 
 def record_file_async(fmt, filename, filetype, device='default'):

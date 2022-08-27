@@ -19,6 +19,7 @@ from aiy.board import Board, Led
 from aiy.voice.audio import AudioFormat, play_wav, record_file
 
 TEST_SOUND_PATH='/home/pi/sound_list/test.mp3'
+TEST_SOUND_PATH_1='/usr/share/sounds/alsa/Front_Center.wav'
 ERROR_NO_SPEAKER_SOUND = '''There may be a problem with your speaker. Check that it is connected properly.'''
 
 def main():
@@ -30,7 +31,8 @@ def main():
         if machine_on_off & music_on == False:
             music_on = True
             print('play music')
-            p = vlc.MediaPlayer(TEST_SOUND_PATH)
+            player = vlc.MediaPlayer()
+            me
             p.play()
             #play_wav(TEST_SOUND_PATH)
             if not ask('Did you hear the test sound?'):
