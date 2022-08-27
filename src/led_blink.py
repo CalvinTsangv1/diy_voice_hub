@@ -36,19 +36,19 @@ def main():
         if record_on_off:
             with tempfile.NamedTemporaryFile() as f:
                 record_file(AudioFormat.CD, filename=f.name, filetype='wav',
-                    wait=lambda: sleep(1))
-            print('Playing back recorded audio...')
-            print(str(f.name))
-            #play_wav(f.name)
+                    wait=lambda: sleep(3))
+                print('Playing back recorded audio...')
+                print(str(f.name))
+                #play_wav(f.name)
 
-            with sr.AudioFile(f.name) as source:
-                # listen for the data (load audio to memory)
-                audio_data = recognizer.record(source)
-                # recognize (convert from speech to text)
-                text = recognizer.recognize_google(audio_data)
-                print(text)
-                if text == "play":
-                    player.play_item(0)
+                with sr.AudioFile(f.name) as source:
+                    # listen for the data (load audio to memory)
+                    audio_data = recognizer.record(source)
+                    # recognize (convert from speech to text)
+                    text = recognizer.recognize_google(audio_data)
+                    print(text)
+                    if text == "play":
+                        player.play_item(0)
             record_on_off = False
     with tempfile.NamedTemporaryFile() as f:
         print('Recording for %d seconds...' % 3)
