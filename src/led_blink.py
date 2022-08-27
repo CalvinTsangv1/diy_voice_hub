@@ -18,6 +18,8 @@ from aiy.board import Board, Led
 from aiy.voice.audio import AudioFormat, play_wav, record_file
 
 TEST_SOUND_PATH='/home/pi/sound_list/armin-blah-blah.wav'
+TEST_SOUND_PATH_1='/usr/share/sounds/alsa/Front_Center.wav'
+ERROR_NO_SPEAKER_SOUND = '''There may be a problem with your speaker. Check that it is connected properly.'''
 
 def main():
     machine_on_off = False # default off
@@ -28,9 +30,19 @@ def main():
         if machine_on_off & music_on == False:
             music_on = True
             print('play music')
-            play_wav(TEST_SOUND_PATH)
+            play_wav(TEST_SOUND_PATH_1)
+            if not ask('Did you hear the test sound?'):
+                error(ERROR_NO_SPEAKER_SOUND)
+                return False
             
+def ask(prompt):
+    answer = input('%s (y/n) ' % prompt).lower()
+    while answer not in ('y', 'n'):
+        answer = input('Please enter y or n: ')
+    return answer == 'y'
 
+def error(message):
+    print(message.strip())
 
     '''board.led.state = Led.ON
         sleep(1)
