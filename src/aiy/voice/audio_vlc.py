@@ -121,7 +121,7 @@ class VLCPlayer:
         self.player.play_item_at_index(self.music_index)
         self._started.wait()
         while self.is_playing():
-            sleep(1)
+            sleep(5)
         print('stop...')
         #clear process thread
         self._process = None
