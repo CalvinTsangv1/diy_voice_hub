@@ -116,9 +116,6 @@ class Button:
 
         self._channel = channel
         print('channel: '+str(channel))
-        print('gpio in: ' + str(GPIO.IN))
-        print('gpio up: ' + str(GPIO.PUD_UP))
-        print('gpio down: ' + str(GPIO.PUD_DOWN))
         GPIO.setup(channel, GPIO.IN,
                    pull_up_down={'up': GPIO.PUD_UP, 'down': GPIO.PUD_DOWN}[pull_up_down])
 
