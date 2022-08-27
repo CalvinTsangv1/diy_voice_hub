@@ -68,7 +68,7 @@ def on_voice_machine(board):
         print('meet? ' + str(reach_on_criteria))
         if reach_on_criteria == True:
             board.led.state = Led.BLINK
-            break
+            return True
         sleep(1)
     
 
