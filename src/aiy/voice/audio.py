@@ -144,7 +144,7 @@ def vlcPlayer(fmt, filetype='mp3', filename=None, device='default'):
         raise ValueError('Missing file.')
     cmd = ['vlc', filename,
             '--aout=alsa',
-            '--alsa-audio-device="default"']
+            '--alsa-audio-device=default']
     return cmd
 
 
