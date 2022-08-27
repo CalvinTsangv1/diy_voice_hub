@@ -32,9 +32,7 @@ def main():
     recognizer = sr.Recognizer()
     list=['Bray','play','pray','Grey']
     recognize_text = ""
-    sleep(2)
-    player.play_item(0)
-    sleep(10)
+    player.play(0)
 '''    player.pause()
     player.start()
     while True:
