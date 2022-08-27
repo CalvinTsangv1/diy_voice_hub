@@ -15,7 +15,7 @@ parent = os.path.dirname(current)
 sys.path.append(parent)
 
 from aiy.board import Board, Led
-from aiy.voice.audio import AudioFormat, play_wav, record_file
+from aiy.voice.audio import AudioFormat, play_wav, record_file, play_mp3, play_mp3_pause, play_mp3_play
 
 TEST_SOUND_PATH='/home/pi/sound_list/test.mp3'
 TEST_SOUND_PATH_1='/usr/share/sounds/alsa/Front_Center.wav'
@@ -25,15 +25,22 @@ def main():
     machine_on_off = False # default off
     music_on = False # default off
     board = Board()
+
+    if play_mp3(TEST_SOUND_PATH) == None:
+        error(ERROR_NO_SPEAKER_SOUND)
+    else:
+        play_mp3_pause()
+    
     while True:
         machine_on_off = voice_machine_on_off(board, machine_on_off)
         if machine_on_off & music_on == False:
             music_on = True
-            play_wav(TEST_SOUND_PATH)
-            if not ask('Did you hear the test sound?'):
-                error(ERROR_NO_SPEAKER_SOUND)
-                return False
-            
+            play_mp3_play()
+        elif machine_on_off & music_on:
+            music_on = False
+            play_mp3_pause()
+
+
 def ask(prompt):
     answer = input('%s (y/n) ' % prompt).lower()
     while answer not in ('y', 'n'):

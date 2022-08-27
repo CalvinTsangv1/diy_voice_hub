@@ -144,7 +144,16 @@ def vlcPlayer(fmt, filetype='mp3', filename=None, device='default'):
         raise ValueError('Missing file.')
     cmd = ['vlc', filename,
             '--aout=alsa',
-            '--alsa-audio-device=default']
+            '--alsa-audio-device=default',
+            '--volume=100']
+    return cmd
+
+def vlcPlayerPause():
+    cmd = ['pause']
+    return cmd
+
+def vlcPlayerPlay():
+    cmd = ['play']
     return cmd
 
 
@@ -249,6 +258,18 @@ def play_wav_async(filename_or_data):
 
     raise ValueError('Must be filename or byte-like object')
 
+def play_mp3(filename_or_data):
+    if isinstance(filename_or_data, str):
+        cmd = vlcPlayer(fmt=fmt, filetype='raw', filename=filename_or_data)
+        return subprocess.Popen(cmd)
+
+def play_mp3_pause():
+    cmd = vlcPlayerPause()
+    return subprocess.Popen(cmd)
+
+def play_mp3_play():
+    cmd = vlcPlayerPlay()
+    return subprocess.Popen(cmd)
 
 def play_wav(filename_or_data):
     """
