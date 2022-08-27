@@ -130,4 +130,4 @@ class VLCPlayer:
         return self.player.is_playing()
 
     def set_volume(self, number):
-        self.
+        self.player.audio_set_volume(number)
