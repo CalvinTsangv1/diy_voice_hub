@@ -99,14 +99,12 @@ class VLCPlayer:
         return self.media_list.__dict__
     
     def get_media(self, index):
-        if sizeof(self.media_list) < index:
-            return self.media_list[0]; #return default
-        return self.media_list[index]
+        return self.player.__getitem__(index)
 
-    def start_item(self, media):
+    def play_item(self, index):
         if self.player == None:
             print("Please init media player")
-        self.player.play_item(media)
+        self.player.play_item_at_index(index)
 
     def pause(self):
         if self.player is not None:
@@ -115,6 +113,14 @@ class VLCPlayer:
     def start(self):
         if self.player is not None:
             self.player.play()
+
+    def next(self):
+        if self.player is not None:
+            self.player.next()
+
+    def previous(self):
+        if self.player is not None:
+            self.player.previous()
 
     def is_playing(self):
         return self.player.is_playing()
