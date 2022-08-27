@@ -39,7 +39,15 @@ def main():
         board.led.state = Led.OFF
         sleep(1)
         board.led.state = Led.BLINK
-        sleep(20)
+        sleep(10)
+        print("BLINK_3")
+        board.led.state = Led.BLINK_3
+        sleep(10)
+        print("BEACON")
+        board.led.state = Led.BEACON
+        sleep(10)
+        print("BEACON_DARK")
+        board.led.state = Led.BEACON_DARK
 
 if __name__ == '__main__':
     main()
