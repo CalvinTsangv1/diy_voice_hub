@@ -20,7 +20,7 @@ Audio format
 
 """
 
-from ctypes import sizeof
+import asyncio
 from time import sleep
 import vlc
 import os
@@ -45,6 +45,7 @@ class VLCPlayer:
 
         self._started = Event()
         self._process = None
+        self._event_loop = asyncio.new_event_loop()
 
     
     def __enter__(self):
@@ -113,13 +114,13 @@ class VLCPlayer:
         if self.player == None:
             print("Please init media player")
         self.music_index = index
-        self._process = Thread(target=self._play_item)
+        self._process = Thread(target=self._play_item, daemon=True)
         self._process.start()
-        self._started.set()
 
     def _play_item(self):
+        asyncio.set_event_loop(self._event_loop)
         self.player.play_item_at_index(self.music_index)
-        self._started.wait()
+        self._event_loop.run_forever()
         
 
 
