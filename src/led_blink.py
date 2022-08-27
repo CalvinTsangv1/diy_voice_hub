@@ -17,7 +17,7 @@ sys.path.append(parent)
 from aiy.board import Board, Led
 from aiy.voice.audio import AudioFormat, play_wav, record_file
 
-TEST_SOUND_PATH='/home/pi/sound_list/armin-blah-blah.wav'
+TEST_SOUND_PATH='/home/pi/sound_list/test.wav'
 TEST_SOUND_PATH_1='/usr/share/sounds/alsa/Front_Center.wav'
 ERROR_NO_SPEAKER_SOUND = '''There may be a problem with your speaker. Check that it is connected properly.'''
 
