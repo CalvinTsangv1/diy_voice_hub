@@ -44,11 +44,12 @@ class VLCPlayer:
         print('quit VLC Player!')
         vlc.quit_app()
 
-    def load_media_list(self, media_path):
+
+    def _load_media_list(self):
         print('running')
-        print(str(os.listdir(media_path)))
+        print(str(os.listdir(self.media_folder_path)))
         self._started.wait()
-        for file in os.listdir(media_path):
+        for file in os.listdir(self.media_folder_path):
             print(str(file))
             if file.split(".")[1] == 'mp3':
                 media = self.instance.media_new(file)
@@ -60,7 +61,8 @@ class VLCPlayer:
 
     def load_media(self, media_path):
         print('thread create')
-        thread = Thread(target=self.load_media_list, args=(media_path))
-        thread.start()
+        self.media_folder_path = media_path
+        self._process = Thread(target=self._load_media_list)
+        self._process.start()
         print('thread started')
         self._started.set()
