@@ -119,12 +119,12 @@ class VLCPlayer:
     def _play_item(self):
         self.player.play_item_at_index(self.music_index)
         self._media_state = self.player.get_state()
-        print('state: '+self._media_state)
+        print('state: '+str(self._media_state))
         while self._media_state is not None: 
             sleep(1)
             try:
                 self._media_state = self.player.get_state()
-                print('state: '+self._media_state)
+                print('state: '+str(self._media_state))
             except Exception:
                 self._media_state = None
             continue
