@@ -34,7 +34,6 @@ class VLCPlayer:
     def __init__(self, media_folder_path = None):
         #setup media player
         self.instance = vlc.Instance()
-        self.media = vlc.MediaPlayer()
         self.player = vlc.MediaListPlayer()
         self.media_list = self.instance.media_list_new()
         self.media_folder_path = media_folder_path
@@ -45,7 +44,7 @@ class VLCPlayer:
 
         self._started = Event()
         self._process = None
-        self._event_loop = asyncio.new_event_loop()
+        self._media_state = None
 
     
     def __enter__(self):
@@ -118,10 +117,16 @@ class VLCPlayer:
         self._process.start()
 
     def _play_item(self):
-        asyncio.set_event_loop(self._event_loop)
-        asyncio.get_event_loop().call_soon(lambda: self.player.play_item_at_index(self.music_index))
-        self._event_loop.run_forever()
-        sleep(1000)
+        self.player.play_item_at_index(self.music_index)
+        sleep(0.1)
+        self._media_state = self.player.get_state()
+        while self._media_state is not None: 
+            sleep(1)
+            try:
+                self._media_state = self.player.get_state()
+            except Exception:
+                self._media_state = None
+            continue
 
     def pause(self):
         if self.player is not None:
