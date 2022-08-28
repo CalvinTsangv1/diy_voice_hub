@@ -117,8 +117,12 @@ class VLCPlayer:
         self._process.start()
 
     def _play_item(self):
-        self.player.play_item_at_index(self.music_index)
-        while self.player.is_playing(): 
+        self._media_state = 'start'
+        while self.player.is_playing() | self._media_state != None:
+            if self._media_state == 'start':
+                self.player.play_item_at_index(self.music_index)
+            elif self.player.is_playing() == False:
+                self._media_state = None
             sleep(5)
 
     def pause(self):
