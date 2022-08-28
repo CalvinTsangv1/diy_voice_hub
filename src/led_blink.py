@@ -55,9 +55,6 @@ def main():
                         print('stop music')
                         player.pause()
 
-
-        
-            record_on_off = False
 def ask(prompt):
     answer = input('%s (y/n) ' % prompt).lower()
     while answer not in ('y', 'n'):
