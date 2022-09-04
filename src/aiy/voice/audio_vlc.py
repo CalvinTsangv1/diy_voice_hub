@@ -94,7 +94,7 @@ class VLCPlayer(EventListener):
             print('failed to load media list')
 
         #clear process thread
-        self._process.stop()
+        self._process 
         self._started.clear()
 
     def get_instance(self):
@@ -112,7 +112,7 @@ class VLCPlayer(EventListener):
             print('waiting to load media...')
             sleep(1)
         self._process = Thread(target=self._load_media_list)
-        self._process.start()
+        self._process.join()
         self._started.set()
 
     def get_media_list(self):
