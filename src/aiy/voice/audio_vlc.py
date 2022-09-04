@@ -132,17 +132,8 @@ class VLCPlayer(EventListener):
             print("Please init media player")
         self.music_index = index
         self.player.play_item_at_index(0)
-        playing = set([1,2,3,4])
-        play = True
-        while play:
-            sleep(0.5)
-            state = self.player.get_state()
-            if state in playing:
-                continue
-            else:
-                print("no play")
-                play = False
-
+        sleep(10)
+        self.player.stop()
         #self.player.play_item_at_index(self.music_index)
         #self._process = Thread(target=self._play_item)
         #self._process.start()
