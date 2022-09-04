@@ -130,9 +130,9 @@ class VLCPlayer(EventListener):
     def play(self, index=0):
         if self.player == None:
             print("Please init media player")
-        print(str(self.player.get_state()))
+        #print(str(self.player.get_state()))
         self.music_index = index
-        self.player.play_item_at_index(self.music_index)
+        self.player.play_item_at_index(0)
         print(str(self.player.get_state()))
         sleep(10)
 
