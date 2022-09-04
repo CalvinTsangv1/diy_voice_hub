@@ -93,6 +93,10 @@ class VLCPlayer(EventListener):
             print("load media list finished !")
         else:
             print('failed to load media list')
+        
+        #clear process thread
+        self._process = None
+        self._started.clear()
 
     def get_instance(self):
         if self.get_instance != None & self.player != None:
@@ -125,10 +129,6 @@ class VLCPlayer(EventListener):
         return self.player.__getitem__(index)
 
     def play(self, index=0):
-        #clear process thread
-        self._process.join()
-        self._started.clear()
-        sleep(1)
         if self.player == None:
             print("Please init media player")
         self.music_index = index
