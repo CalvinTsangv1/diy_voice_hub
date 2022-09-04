@@ -27,6 +27,7 @@ ERROR_NO_SPEAKER_SOUND = '''There may be a problem with your speaker. Check that
 def main():
     record_on_off = False # default off
     music_on = False # default off
+    voice_command = ""
     board = Board()
     player = VLCPlayer()
     player.load_media(TEST_SOUND_PATH)
@@ -49,16 +50,18 @@ def main():
                     audio_data = recognizer.record(source)
                     # recognize (convert from speech to text)
                     try:
-                        text = recognizer.recognize_google(audio_data)
+                        voice_command = recognizer.recognize_google(audio_data)
                     except:
                         print("google recognition record is broken")
-                    print("'"+text+"'")
-                    if text in play:
-                        print('play music')
-                        player.trigger("play")
-                    elif text in stop:
-                        print('stop music')
-                        player.pause()
+
+        if voice_command != "":
+            if voice_command in play:
+                print('play music')
+                player.trigger("play")
+            elif voice_command in stop:
+                print('stop music')
+                player.pause()
+            voice_command = ""
 
 def ask(prompt):
     answer = input('%s (y/n) ' % prompt).lower()
