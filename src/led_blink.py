@@ -55,7 +55,7 @@ def main():
                     print("'"+text+"'")
                     if text in play:
                         print('play music')
-                        player.trigger()
+                        player.trigger("play")
                     elif text in stop:
                         print('stop music')
                         player.pause()
