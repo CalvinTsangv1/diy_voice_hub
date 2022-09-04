@@ -31,7 +31,25 @@ import alsaaudio
 
 SUPPORTED_FILETYPES = ('wav', 'raw', 'voc', 'au')
 
-class VLCPlayer:
+
+class EventListener(object):
+    callbacks = None
+
+    def on(self, eventName, callback):
+        if self.callbacks is None:
+            self.callbacks = {}
+
+        if eventName not in self.callbacks:
+            self.callbacks[eventName] = [callback]
+        else:
+            self.callbacks[eventName].append(callback)
+
+    def trigger(self, name):
+        if self.callbacks is not None and name in self.callbacks:
+            for callback in self.callbacks[name]:
+                callback(self)
+
+class VLCPlayer(EventListener):
     def __init__(self, media_folder_path = None):
         #setup media player
         self.instance = vlc.Instance()

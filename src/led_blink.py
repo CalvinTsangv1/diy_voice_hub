@@ -30,6 +30,7 @@ def main():
     board = Board()
     player = VLCPlayer()
     player.load_media(TEST_SOUND_PATH)
+    player.on("play", player.play)
     recognizer = sr.Recognizer()
     play=['Bray','play','pray','Grey']
     stop=['stop']
@@ -54,8 +55,8 @@ def main():
                     print("'"+text+"'")
                     if text in play:
                         print('play music')
-                        player.play()
-                    if text in stop:
+                        player.trigger()
+                    elif text in stop:
                         print('stop music')
                         player.pause()
 
