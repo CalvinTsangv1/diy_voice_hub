@@ -1,4 +1,5 @@
 from ast import expr_context
+import subprocess
 import sys
 import os
 from time import sleep
@@ -25,6 +26,7 @@ TEST_SOUND_PATH_1='/usr/share/sounds/alsa/Front_Center.wav'
 ERROR_NO_SPEAKER_SOUND = '''There may be a problem with your speaker. Check that it is connected properly.'''
 
 def main():
+    subprocess.call('vlc -d', shell=True)
     record_on_off = False # default off
     music_on = False # default off
     voice_command = ""

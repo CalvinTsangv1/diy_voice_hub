@@ -20,10 +20,9 @@ Audio format
 
 """
 
-import asyncio
+
 from time import sleep
 import vlc
-import playsound
 import os
 from threading import Thread
 from threading import Event
