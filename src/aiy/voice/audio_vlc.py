@@ -23,6 +23,7 @@ Audio format
 import asyncio
 from time import sleep
 import vlc
+import playsound
 import os
 from threading import Thread
 from threading import Event
@@ -118,6 +119,7 @@ class VLCPlayer:
 
     def _play_item(self):
         self.player.play_item_at_index(self.music_index)
+        self.player.audio_set_volume(100)
         sleep(10000)
 
     def pause(self):
