@@ -130,9 +130,13 @@ class VLCPlayer(EventListener):
     def play(self, index=0):
         if self.player == None:
             print("Please init media player")
+        print(self.player.get_state())
         self.music_index = index
-        player = vlc.MediaPlayer("/home/pi/sound_list/test.mp3")
-        player.play()
+        self.player.play_item_at_index(self.music_index)
+        print(self.player.get_state())
+        sleep(10)
+
+        self.player.release()
         #self.player.play_item_at_index(self.music_index)
         #self._process = Thread(target=self._play_item)
         #self._process.start()
