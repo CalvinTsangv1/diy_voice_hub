@@ -40,20 +40,21 @@ def main():
     sleep(1)
     while voice_command == "":
         if board.button.wait_for_press():
-            with tempfile.NamedTemporaryFile() as f:
-                record_file(AudioFormat.CD, filename=f.name, filetype='wav',
-                    wait=lambda: sleep(3))
-                print('Playing back recorded audio...')
-                print(str(f.name))
+            voice_command = "play"
+            #with tempfile.NamedTemporaryFile() as f:
+            #    record_file(AudioFormat.CD, filename=f.name, filetype='wav',
+            #        wait=lambda: sleep(2))
+            #    print('Playing back recorded audio...')
+            #    print(str(f.name))
 
-                with sr.AudioFile(f.name) as source:
+            #    with sr.AudioFile(f.name) as source:
                     # listen for the data (load audio to memory)
-                    audio_data = recognizer.record(source)
+            #        audio_data = recognizer.record(source)
                     # recognize (convert from speech to text)
-                    try:
-                        voice_command = recognizer.recognize_google(audio_data)
-                    except:
-                        print("google recognition record is broken")
+            #        try:
+            #            voice_command = recognizer.recognize_google(audio_data)
+            #        except:
+            #            print("google recognition record is broken")
 
         if voice_command != "":
             if voice_command in play:
