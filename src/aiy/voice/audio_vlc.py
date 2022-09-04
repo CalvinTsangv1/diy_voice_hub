@@ -125,9 +125,9 @@ class VLCPlayer(EventListener):
 
     def play(self, index=0):
         #clear process thread
-        self._process.join()
-        self._started.clear()
-        sleep(1)
+        #self._process.join()
+        #self._started.clear()
+        #sleep(1)
         if self.player == None:
             print("Please init media player")
         self.music_index = index
