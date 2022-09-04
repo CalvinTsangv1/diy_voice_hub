@@ -1,3 +1,4 @@
+from ast import expr_context
 import sys
 import os
 from time import sleep
@@ -46,7 +47,10 @@ def main():
                     # listen for the data (load audio to memory)
                     audio_data = recognizer.record(source)
                     # recognize (convert from speech to text)
-                    text = recognizer.recognize_google(audio_data)
+                    try:
+                        text = recognizer.recognize_google(audio_data)
+                    except:
+                        print("google recognition record is broken")
                     print("'"+text+"'")
                     if text in play:
                         print('play music')
