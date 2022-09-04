@@ -21,7 +21,7 @@ Audio format
 """
 
 
-from time import sleep
+from time import sleep, time
 import vlc
 import os
 from threading import Thread
@@ -93,10 +93,6 @@ class VLCPlayer(EventListener):
         else:
             print('failed to load media list')
 
-        #clear process thread
-        self._process.join(1) 
-        self._started.clear()
-
     def get_instance(self):
         if self.get_instance != None & self.player != None:
             return self.player
@@ -128,6 +124,10 @@ class VLCPlayer(EventListener):
         return self.player.__getitem__(index)
 
     def play(self, index=0):
+        #clear process thread
+        self._process.join()
+        self._started.clear()
+        sleep(1)
         if self.player == None:
             print("Please init media player")
         self.music_index = index
