@@ -59,7 +59,7 @@ class VLCPlayer(EventListener):
         self.music_index = 0
 
         self.sound_mixer = alsaaudio.Mixer()
-        self.sound_mixer.setvolume(40)
+        self.sound_mixer.setvolume(20)
 
         self._started = Event()
         self._process = None
