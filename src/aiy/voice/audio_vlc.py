@@ -115,7 +115,7 @@ class VLCPlayer:
             print("Please init media player")
         self.music_index = index
         self.player.play_item_at_index(self.music_index)
-        sleep(10000)
+        #sleep(10000)
         #self._process = Thread(target=self._play_item)
         #self._process.start()
 

@@ -55,6 +55,7 @@ def main():
                     if text in play:
                         print('play music')
                         player.play()
+                        sleep(10000)
                     if text in stop:
                         print('stop music')
                         player.pause()
