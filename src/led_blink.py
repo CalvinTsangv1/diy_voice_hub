@@ -37,7 +37,7 @@ def main():
     stop=['stop']
 
     sleep(1)
-    while True:
+    while voice_command == "":
         if board.button.wait_for_press():
             with tempfile.NamedTemporaryFile() as f:
                 record_file(AudioFormat.CD, filename=f.name, filetype='wav',
@@ -58,6 +58,7 @@ def main():
             if voice_command in play:
                 print('play music')
                 player.trigger("play")
+                sleep(100)
             elif voice_command in stop:
                 print('stop music')
                 player.pause()
