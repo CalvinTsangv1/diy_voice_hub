@@ -60,7 +60,6 @@ def main():
             if voice_command in play:
                 print('play music')
                 player.trigger("play")
-                sleep(100)
             elif voice_command in stop:
                 print('stop music')
                 player.pause()
